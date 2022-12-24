@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Projekt.Models;
+using System;
 
 namespace Projekt.Data
 {
@@ -7,8 +8,10 @@ namespace Projekt.Data
     {
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Team> Teams { get; set; }
+
         public ApiDbContext(DbContextOptions<ApiDbContext> options): base(options) { 
         
         }   
+
     }
 }

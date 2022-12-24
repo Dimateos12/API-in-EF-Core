@@ -13,5 +13,7 @@ namespace Projekt.Models
         [Comment("Hasło użytkownika")]
         public string Password { get; set; }
 
+        public List<Team>? Team { get; set; }
+
     }
 }
