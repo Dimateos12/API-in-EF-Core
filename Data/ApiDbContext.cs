@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Projekt.Models;
 using System;
 
 namespace Projekt.Data
 {
-    public class ApiDbContext : DbContext
+    public class ApiDbContext : IdentityDbContext
     {
         public virtual DbSet<User> Users { get; set; }
         public virtual DbSet<Team> Teams { get; set; }

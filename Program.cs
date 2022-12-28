@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Projekt.Configurations;
@@ -17,7 +18,8 @@ builder.Services.AddSwaggerGen();
 //Inicjalizacja bazy danych POSTGRESSQL 
 builder.Services.AddEntityFrameworkNpgsql().AddDbContext<ApiDbContext>
     (opt => opt.UseNpgsql(builder.Configuration.GetConnectionString("ProjektDbConnection")));
-builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
+
+ builder.Services.Configure<JwtConfig>(builder.Configuration.GetSection("JwtConfig"));
 
 builder.Services.AddAuthentication(options =>
 {
@@ -44,7 +46,9 @@ builder.Services.AddAuthentication(options =>
 
         };
     });
-    ;
+
+builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedEmail = false)
+    .AddEntityFrameworkStores<ApiDbContext>();
 
 var app = builder.Build();
 
