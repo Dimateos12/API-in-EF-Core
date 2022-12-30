@@ -8,12 +8,27 @@ using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
+//Add COR to connect with frontend
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("myPolicy", builder =>
+    {
+        builder.WithOrigins("http://localhost:3000")
+            .AllowAnyHeader()
+            .AllowAnyMethod()
+            .AllowCredentials();
+    });
+});
+
+
 // Add services to the container.
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
 
 //Inicjalizacja bazy danych POSTGRESSQL 
 builder.Services.AddEntityFrameworkNpgsql().AddDbContext<ApiDbContext>
@@ -66,5 +81,5 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
-
+app.UseCors("myPolicy");
 app.Run();
