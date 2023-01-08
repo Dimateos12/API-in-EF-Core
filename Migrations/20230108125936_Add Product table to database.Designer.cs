@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Projekt.Data;
@@ -11,9 +12,11 @@ using Projekt.Data;
 namespace Projekt.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    partial class ApiDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230108125936_Add Product table to database")]
+    partial class AddProducttabletodatabase
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -248,8 +251,9 @@ namespace Projekt.Migrations
                         .HasColumnType("text")
                         .HasComment("Sekcja popularne");
 
-                    b.Property<bool>("IsVisibility")
-                        .HasColumnType("boolean")
+                    b.Property<string>("IsVisibility")
+                        .IsRequired()
+                        .HasColumnType("text")
                         .HasComment("Produkt usuniety");
 
                     b.Property<double>("Price")

@@ -1,0 +1,18 @@
+TY  - JOUR
+AU  - Palma-Mendoza, Raul-Jose
+AU  - Rodriguez, Daniel
+AU  - de-Marcos, Luis
+PY  - 2018
+DA  - 2018/10/01
+TI  - Distributed ReliefF-based feature selection in Spark
+JO  - Knowledge and Information Systems
+SP  - 1
+EP  - 20
+VL  - 57
+IS  - 1
+AB  - Feature selection (FS) is a key research area in the machine learning and data mining fields; removing irrelevant and redundant features usually helps to reduce the effort required to process a dataset while maintaining or even improving the processing algorithm’s accuracy. However, traditional algorithms designed for executing on a single machine lack scalability to deal with the increasing amount of data that have become available in the current Big Data era. ReliefF is one of the most important algorithms successfully implemented in many FS applications. In this paper, we present a completely redesigned distributed version of the popular ReliefF algorithm based on the novel Spark cluster computing model that we have called DiReliefF. The effectiveness of our proposal is tested on four publicly available datasets, all of them with a large number of instances and two of them with also a large number of features. Subsets of these datasets were also used to compare the results to a non-distributed implementation of the algorithm. The results show that the non-distributed implementation is unable to handle such large volumes of data without specialized hardware, while our design can process them in a scalable way with much better processing times and memory usage.
+SN  - 0219-3116
+UR  - https://doi.org/10.1007/s10115-017-1145-y
+DO  - 10.1007/s10115-017-1145-y
+ID  - Palma-Mendoza2018
+ER  - 

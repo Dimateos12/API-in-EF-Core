@@ -15,6 +15,19 @@ namespace Projekt.Controllers
             _context = context;
         }
 
+        [HttpGet("rank")]
+        public async Task<IActionResult> GetRank()
+        {
+            var usersRanking = await _context.Users.OrderBy(item=>item.Status).ToListAsync();
+            
+            if(usersRanking.Count() == 0) {
+                return BadRequest("Invalid list users");
+            }
+            return Ok(usersRanking);
+
+        }
+
+
         [HttpGet]
         public async Task<IActionResult> Get()
         {

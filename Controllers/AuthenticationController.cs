@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Projekt.Configurations;
+using Projekt.Data;
 using Projekt.Models;
 using Projekt.Models.ModelsDTO;
 using System.IdentityModel.Tokens.Jwt;
@@ -17,17 +19,21 @@ namespace Projekt.Controllers
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IConfiguration _configuration;
         // private readonly JwtConfig _jwtConfig;
+        private static ApiDbContext _context;
+       
 
         public AuthenticationController(
 
-            UserManager<IdentityUser> userManager,
-        //    JwtConfig jwtConfig
-           IConfiguration configuration
+           UserManager<IdentityUser> userManager,
+           IConfiguration configuration,
+           ApiDbContext context
          )
         {
          //    _jwtConfig= jwtConfig;
             _userManager= userManager;
             _configuration= configuration;
+            _context = context;
+       
         }
 
 
@@ -64,7 +70,7 @@ namespace Projekt.Controllers
                 {
                     //Generate token 
                     var token = GenerateJwtToken(new_user);
-
+                    
                     return Ok(new AuthResult()
                     {
                     Result = true,
